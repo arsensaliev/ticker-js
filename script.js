@@ -1,7 +1,7 @@
-function animateMarquee(el, duration, text) {
-  const innerEl = el.querySelector(".marquee__inner");
-  innerEl.innerHTML = text;
-  const innerWidth = innerEl.offsetWidth;
+const innerEl = document.querySelector(".marquee__inner");
+const innerWidth = innerEl.offsetWidth;
+console.log(innerWidth);
+function animateMarquee(duration) {
   const cloneEl = innerEl.cloneNode(true);
   console.log(cloneEl);
   // el.appendChild(innerEl.nodeValue);
@@ -32,9 +32,11 @@ const marquee1 = document.querySelector("#marquee1");
 const btn = document.querySelector(".ticker-start");
 
 btn.addEventListener("click", (e) => {
+  const speed = document.querySelector(".ticker-speed").value * 1000;
+  const text = document.querySelector(".textarea").value;
+  innerEl.innerHTML = text;
+  innerEl.style.transform = "none";
   setTimeout(() => {
-    const speed = document.querySelector(".ticker-speed").value * 1000;
-    const text = document.querySelector(".textarea").value;
-    animateMarquee(marquee1, speed, text);
+    animateMarquee(speed);
   }, 3000);
 });
